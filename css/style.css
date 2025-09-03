@@ -1,4 +1,10 @@
 body {
-    font-family: monospace;
-    padding: 1rem;
+  font-family: monospace;
+  padding: 1rem;
+}
+
+.message-container {
+  max-height: 5.5rem;
+  overflow-y: scroll;
+  margin: 2rem 0;
 }
