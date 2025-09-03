@@ -4,6 +4,7 @@ body {
 }
 
 .message-container {
+  height: 5.5rem;
   max-height: 5.5rem;
   overflow-y: scroll;
   margin: 2rem 0;
