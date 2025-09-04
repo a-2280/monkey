@@ -23,12 +23,19 @@ forageButton.addEventListener("click", () => {
   const randomNumber = getRandomNumber(0, 3);
   const understandingChance = Math.random();
 
-  if (understandingChance < 0.1) {
+  if (monkeyCount == 0 || monkeyCount < 0) {
+    const li = document.createElement("li");
+    li.appendChild(document.createTextNode(`Game Over`));
+    li.style.color = "red";
+    messageBoard.appendChild(li);
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+  } else if (understandingChance < 0.1) {
     understandingCount += 1;
     understanding.innerText = `Understanding: ${understandingCount}`;
 
     const li = document.createElement("li");
     li.appendChild(document.createTextNode(`Ape learn something!`));
+    li.style.color = "green";
     messageBoard.appendChild(li);
     messageContainer.scrollTop = messageContainer.scrollHeight;
   } else {
@@ -39,15 +46,23 @@ forageButton.addEventListener("click", () => {
     li.appendChild(
       document.createTextNode(`You collected ${randomNumber} food`)
     );
+    li.style.color = "green";
     messageBoard.appendChild(li);
     messageContainer.scrollTop = messageContainer.scrollHeight;
   }
 });
 
 sleepButton.addEventListener("click", () => {
-  if (foodCount == 0 || foodCount - monkeyCount < 0) {
+  if (monkeyCount == 0 || monkeyCount < 0) {
+    const li = document.createElement("li");
+    li.appendChild(document.createTextNode(`Game Over`));
+    li.style.color = "red";
+    messageBoard.appendChild(li);
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+  } else if (foodCount == 0 || foodCount - monkeyCount < 0) {
     const li = document.createElement("li");
     li.appendChild(document.createTextNode(`Monkeys starve!`));
+    li.style.color = "red";
     messageBoard.appendChild(li);
     messageContainer.scrollTop = messageContainer.scrollHeight;
   } else {
@@ -67,12 +82,19 @@ sleepButton.addEventListener("click", () => {
 caveButton.addEventListener("click", () => {
   const randomNumber = Math.random();
 
-  if (randomNumber < 0.5) {
+  if (monkeyCount <= 0) {
+    const li = document.createElement("li");
+    li.appendChild(document.createTextNode(`Game Over`));
+    li.style.color = "red";
+    messageBoard.appendChild(li);
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+  } else if (randomNumber < 0.5) {
     understandingCount += 3;
     understanding.innerText = `Understanding: ${understandingCount}`;
 
     const li = document.createElement("li");
     li.appendChild(document.createTextNode(`Understanding +3`));
+    li.style.color = "green";
     messageBoard.appendChild(li);
     messageContainer.scrollTop = messageContainer.scrollHeight;
   } else {
@@ -81,6 +103,7 @@ caveButton.addEventListener("click", () => {
 
     const li = document.createElement("li");
     li.appendChild(document.createTextNode(`Monkey died...`));
+    li.style.color = "red";
     messageBoard.appendChild(li);
     messageContainer.scrollTop = messageContainer.scrollHeight;
   }
