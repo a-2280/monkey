@@ -42,13 +42,29 @@ forageButton.addEventListener("click", () => {
     foodCount += randomNumber;
     food.innerText = `Food: ${foodCount}`;
 
-    const li = document.createElement("li");
-    li.appendChild(
-      document.createTextNode(`You collected ${randomNumber} food`)
-    );
-    li.style.color = "green";
-    messageBoard.appendChild(li);
-    messageContainer.scrollTop = messageContainer.scrollHeight;
+    if (randomNumber == 0) {
+      const li = document.createElement("li");
+      const span = document.createElement("span");
+
+      li.innerText = `You collected `;
+      span.innerText = `${randomNumber} food`;
+      span.style.color = "red";
+
+      li.appendChild(span);
+      messageBoard.appendChild(li);
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+    } else {
+      const li = document.createElement("li");
+      const span = document.createElement("span");
+
+      li.innerText = `You collected `;
+      span.innerText = `${randomNumber} food`;
+      span.style.color = "green";
+      li.appendChild(span);
+
+      messageBoard.appendChild(li);
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+    }
   }
 });
 
@@ -61,7 +77,7 @@ sleepButton.addEventListener("click", () => {
     messageContainer.scrollTop = messageContainer.scrollHeight;
   } else if (foodCount == 0 || foodCount - monkeyCount < 0) {
     const li = document.createElement("li");
-    li.appendChild(document.createTextNode(`Monkeys starve!`));
+    li.appendChild(document.createTextNode(`Monkeys will starve!`));
     li.style.color = "red";
     messageBoard.appendChild(li);
     messageContainer.scrollTop = messageContainer.scrollHeight;
